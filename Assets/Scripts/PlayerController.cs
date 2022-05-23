@@ -4,29 +4,39 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Private Variables
-    private float speed = 25.0f;
-    private float turnSpeed= 45.0f;
-    private float horizontalInput;
-    private float forwardInput;
+    public float horizontalInput;
+    public float speed = 10.0f;
+    public float xRange = 5.0f;
 
+    public GameObject projectilePrefab;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Where we get player input
-        horizontalInput = Input.GetAxis("Horizontal");
-        forwardInput = Input.GetAxis("Vertical");
+        //Sets player boundary 
+        if (transform.position.x < -xRange)
+        {
+            transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
+        }
+        if (transform.position.x > xRange)
+        {
+            transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
+        }
 
-        // Move the vehicle forward
-        transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
-        // We turn the vehicle 
-        transform.Rotate(Vector3.up, horizontalInput * turnSpeed * Time.deltaTime);
+        horizontalInput = Input.GetAxis("Horizontal");
+        transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // Launch a projectile from the player
+            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+        }
     }
 }
+
