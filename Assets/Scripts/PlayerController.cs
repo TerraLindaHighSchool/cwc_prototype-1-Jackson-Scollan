@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private Rigidbody playerRb;
+    private AudioSource playerAudio;
     public float horizontalInput;
     public float speed = 10.0f;
     public float xRange = 5.0f;
     public bool gameOver = false;
-    
+    public ParticleSystem exsplosionParicle;
+    public ParticleSystem dirtParticle;
+    public AudioClip crashSound;
 
+    
     // Start is called before the first frame update
     void Start()
     {
-
+        playerRb = GetComponent<Rigidbody>();
+        playerAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -31,8 +37,20 @@ public class PlayerController : MonoBehaviour
 
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+    }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            gameOver = true;
+            Debug.Log("Game Over!");
+            exsplosionParicle.Play();
+            dirtParticle.Stop();
+            playerAudio.PlayOneShot(crashSound, 1.0f);
+        }
        
     }
+       
 }
-
