@@ -9,12 +9,13 @@ public class PlayerController : MonoBehaviour
     public float horizontalInput;
     public float speed = 10.0f;
     public float xRange = 5.0f;
-    public bool gameOver = false;
     public ParticleSystem exsplosionParicle;
     public ParticleSystem dirtParticle;
     public AudioClip crashSound;
 
-    
+    public bool gameOver = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,18 +40,18 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
     }
 
+    
     private void OnCollisionEnter(Collision collision)
     {
-
-        if (collision.gameObject.CompareTag("Obstacle"))
-        {
+       if (collision.gameObject.CompareTag("Obstacle"))
+       {
             gameOver = true;
             Debug.Log("Game Over!");
+
+          
             exsplosionParicle.Play();
             dirtParticle.Stop();
             playerAudio.PlayOneShot(crashSound, 1.0f);
-        }
-       
+       }
     }
-       
 }

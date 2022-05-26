@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveRight : MonoBehaviour
 {
-    private float speed = 30.0f;
+    private float speed = 80.0f;
     private PlayerController playerControllerScript;
 
     // Start is called before the first frame update
@@ -16,12 +16,12 @@ public class MoveRight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerControllerScript.gameOver == false)
+        if (!playerControllerScript.gameOver)
         { 
             transform.Translate(Vector3.right * Time.deltaTime * speed); 
         }
 
-        if (transform.position.x < 10 && gameObject.CompareTag("Obstacle"))
+        if (transform.position.z < 10 && gameObject.CompareTag("Obstacle"))
         {
             Destroy(gameObject);
         }

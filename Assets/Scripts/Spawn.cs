@@ -5,9 +5,14 @@ using UnityEngine;
 public class Spawn : MonoBehaviour
 {
     public GameObject obstaclePrefab;
-    private Vector3 spawnPos = new Vector3(30, 0, 0);
+
+    private Vector3 spawnPos = new Vector3(0, 0, 100);
+
+    private float spawnRangeX = 20;
+    private float spawnPosZ = 20;
     private float startDelay = 2;
-    private float repeatRate = 2;
+    private float repeatRate = 1;
+
     private PlayerController playerControllerScript;
 
     // Start is called before the first frame update
@@ -30,4 +35,13 @@ public class Spawn : MonoBehaviour
             Instantiate(obstaclePrefab, spawnPos, obstaclePrefab.transform.rotation);
         }
     }
+
+    void SpawnRandomAnimal()
+    {
+        int animalIndex = Random.Range(0, obstaclePrefab.Length);
+        Vector3 spawnPros = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 0, spawnPosZ);
+
+        Instantiate(obstaclePrefab[obstacleIndex], spawnPros, obstaclePrefab[obstacleIndex].transform.rotation);
+    }
+
 }
