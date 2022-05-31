@@ -20,10 +20,5 @@ public class MoveRight : MonoBehaviour
         { 
             transform.Translate(Vector3.right * Time.deltaTime * speed); 
         }
-
-        if (transform.position.z < 10 && gameObject.CompareTag("Obstacle"))
-        {
-            Destroy(gameObject);
-        }
     }
 }

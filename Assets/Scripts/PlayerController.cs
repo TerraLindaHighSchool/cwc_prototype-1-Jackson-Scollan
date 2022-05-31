@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem dirtParticle;
     public AudioClip crashSound;
 
-    public bool gameOver = false;
+    public bool gameOver;
 
 
     // Start is called before the first frame update
@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //Sets player boundary 
+        if (gameOver)
+            return;
+
         if (transform.position.x < -xRange)
         {
             transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);

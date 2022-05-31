@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyBullet : MonoBehaviour
+public class DestroyObstacles : MonoBehaviour
 {
-    private float topBound = 50;
-    private float lowerBound = -10;
+    private float topBound = 400;
+    private float lowerBound = -15;
 
     // Start is called before the first frame update
     void Start()
@@ -23,9 +23,7 @@ public class DestroyBullet : MonoBehaviour
         }
         else if (transform.position.z < lowerBound)
         {
-            Debug.Log("Game Over!");
             Destroy(gameObject);
         }
     }
-
 }
