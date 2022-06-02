@@ -8,8 +8,8 @@ public class Spawn : MonoBehaviour
 
     private float spawnRangeX = 9;
     private float spawnPosZ = 380;
-    private float startDelay = 1;
-    private float repeatRate = 1;
+    private float startDelay = 0.3f;
+    private float repeatRate = .4f;
 
     private PlayerController playerControllerScript;
 

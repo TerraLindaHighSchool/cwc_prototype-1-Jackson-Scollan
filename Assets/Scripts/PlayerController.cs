@@ -43,18 +43,22 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
     }
 
-    
+
     private void OnCollisionEnter(Collision collision)
     {
-       if (collision.gameObject.CompareTag("Obstacle"))
-       {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
             gameOver = true;
             Debug.Log("Game Over!");
 
-          
+
             exsplosionParicle.Play();
             dirtParticle.Stop();
-            playerAudio.PlayOneShot(crashSound, 1.0f);
-       }
+            //playerAudio.PlayOneShot(crashSound, 1.0f);
+        }
+        else if (!collision.gameObject.CompareTag("Obstacle")) ;
+        {
+            dirtParticle.Play();
+        }
     }
 }

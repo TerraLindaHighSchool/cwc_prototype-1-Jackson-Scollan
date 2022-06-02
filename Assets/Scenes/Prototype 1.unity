@@ -329,6 +329,7 @@ MonoBehaviour:
   - {fileID: 9139356068620166699, guid: 064c5eb2082957742a57e4b372a45935, type: 3}
   - {fileID: 6348012637053710012, guid: 91099de0cd56a794e90c05b355459e17, type: 3}
   - {fileID: 2459356046493958508, guid: 7c4f2fd9d2e57ca4db21ed67a618d5db, type: 3}
+  - {fileID: 323006097450586604, guid: 9e6a69a66269ca74fa6cf88af82b0d05, type: 3}
 --- !u!4 &526129840
 Transform:
   m_ObjectHideFlags: 0
@@ -477,7 +478,8 @@ MonoBehaviour:
   horizontalInput: 0
   speed: 50
   xRange: 7
-  exsplosionParicle: {fileID: 0}
+  exsplosionParicle: {fileID: 9125212449759046732, guid: cb7cd9b0c56a24d49a40784bd3203ae6,
+    type: 3}
   dirtParticle: {fileID: 1438565936, guid: fb82dfb8d1c7044c69afd2486befecb3, type: 3}
   crashSound: {fileID: 0}
   gameOver: 0
