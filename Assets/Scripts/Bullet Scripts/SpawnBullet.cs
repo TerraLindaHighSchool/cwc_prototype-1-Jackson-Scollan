@@ -36,7 +36,18 @@ public class SpawnBullet : MonoBehaviour
                 Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
                 bulletsShot++;
             }
+            else
+            {
+                StartCoroutine(WaitForBullets());
+            }
 
+            
+
+        }
+
+        IEnumerator WaitForBullets()
+        {
+            yield return new WaitForSeconds(30);
             
 
         }

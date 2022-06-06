@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,9 +11,13 @@ public class PlayerController : MonoBehaviour
     public float horizontalInput;
     public float speed = 10.0f;
     public float xRange = 5.0f;
-    public ParticleSystem exsplosionParicle;
+    public ParticleSystem explosionParticle;
     public ParticleSystem dirtParticle;
     public AudioClip crashSound;
+
+    public TextMeshProUGUI titleText;
+    public TextMeshProUGUI gameOverText;
+
 
     public bool gameOver;
 
@@ -21,6 +27,9 @@ public class PlayerController : MonoBehaviour
     {
         playerRb = GetComponent<Rigidbody>();
         playerAudio = GetComponent<AudioSource>();
+        gameOverText.gameObject.SetActive(false);
+        titleText.gameObject.SetActive(true);
+        dirtParticle.Play();
     }
 
     // Update is called once per frame
@@ -41,6 +50,8 @@ public class PlayerController : MonoBehaviour
 
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+
+  
     }
 
 
@@ -52,13 +63,22 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Game Over!");
 
 
-            exsplosionParicle.Play();
+            explosionParticle.Play();
             dirtParticle.Stop();
+
+            gameOverText.gameObject.SetActive(true);
             //playerAudio.PlayOneShot(crashSound, 1.0f);
         }
-        else if (!collision.gameObject.CompareTag("Obstacle")) ;
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Start"))
         {
-            dirtParticle.Play();
+            Debug.Log("Go!");
+            titleText.gameObject.SetActive(false);
         }
     }
+
 }
