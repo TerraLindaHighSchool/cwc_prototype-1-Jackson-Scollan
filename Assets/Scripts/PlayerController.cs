@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 10.0f;
     public float xRange = 5.0f;
     public ParticleSystem explosionParticle;
-    public ParticleSystem dirtParticle;
+    public ParticleSystem exhuastParticle;
     public AudioClip crashSound;
 
     public TextMeshProUGUI titleText;
@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
         playerAudio = GetComponent<AudioSource>();
         gameOverText.gameObject.SetActive(false);
         titleText.gameObject.SetActive(true);
-        dirtParticle.Play();
     }
 
     // Update is called once per frame
@@ -64,8 +63,7 @@ public class PlayerController : MonoBehaviour
 
 
             explosionParticle.Play();
-            dirtParticle.Stop();
-
+        
             gameOverText.gameObject.SetActive(true);
             //playerAudio.PlayOneShot(crashSound, 1.0f);
         }

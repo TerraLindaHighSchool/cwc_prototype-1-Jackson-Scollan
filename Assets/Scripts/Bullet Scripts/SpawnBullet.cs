@@ -31,7 +31,7 @@ public class SpawnBullet : MonoBehaviour
         //Max shots is 5
         void Bullet()
             {
-            if (bulletsShot <= 10)
+            if (bulletsShot <= 9)
             {
                 Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
                 bulletsShot++;
